@@ -1,0 +1,203 @@
+{
+  "app": {
+    "name": "Montoran",
+    "tagline": "Find Your Dream Used Car",
+    "description": "Explore our collection of quality used cars. Each car comes with a complete history and thorough inspection."
+  },
+  "nav": {
+    "home": "Home",
+    "cars": "Cars",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "dashboard": "Dashboard",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "home": {
+    "hero": {
+      "title": "Find Your Dream Used Car",
+      "subtitle": "Explore our collection of quality used cars. Each car comes with a complete history and thorough inspection.",
+      "cta": "View Cars"
+    },
+    "available": {
+      "title": "Available Cars",
+      "subtitle": "Choose from our collection of quality vehicles for your journey"
+    },
+    "trust": {
+      "quality": {
+        "title": "Quality Guaranteed",
+        "desc": "Every car undergoes thorough inspection"
+      },
+      "price": {
+        "title": "Best Prices",
+        "desc": "Competitive prices for all vehicles"
+      },
+      "finance": {
+        "title": "Easy Financing",
+        "desc": "Flexible payment options"
+      }
+    }
+  },
+  "about": {
+    "badge": "100% Quality Used Cars",
+    "hero": {
+      "title": "Quality Used Cars at the Best Prices",
+      "description": "Find your dream used car from various brands and types. From family MPVs, adventure SUVs, to high-performance sports cars. All our cars have undergone strict inspections to ensure the best quality.",
+      "cta": "View All Cars"
+    },
+    "stats": {
+      "cars": "Available Cars",
+      "customers": "Satisfied Customers",
+      "experience": "Years of Experience",
+      "support": "Customer Support"
+    },
+    "why": {
+      "title": "Why Choose Us?",
+      "subtitle": "We provide the best service with the highest quality standards for all our customers",
+      "quality": {
+        "title": "Quality Guarantee",
+        "description": "All cars have undergone thorough inspection by our expert team with 150+ inspection points to ensure the best quality.",
+        "point1": "Thorough engine inspection",
+        "point2": "Vehicle history check"
+      },
+      "transaction": {
+        "title": "Secure Transaction",
+        "description": "Safe and trusted transaction process with full support from our professional team throughout the process.",
+        "point1": "Official and complete documents",
+        "point2": "Credit support available"
+      },
+      "price": {
+        "title": "Best Prices",
+        "description": "We offer competitive prices with good resale value for all vehicles in our catalog.",
+        "point1": "Transparent pricing with no hidden fees",
+        "point2": "Flexible payment options"
+      }
+    },
+    "cta": {
+      "title": "Ready to Find Your Dream Car?",
+      "description": "Contact us now to get the best offer or visit our showroom to see the car collection in person.",
+      "contact": "Contact Us",
+      "explore": "Explore Collection"
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Contact Us",
+      "subtitle": "We're ready to help you find your dream car. Don't hesitate to contact us with your questions or requests."
+    },
+    "info": {
+      "title": "Contact Information",
+      "phone": {
+        "title": "Phone"
+      },
+      "email": {
+        "title": "Email"
+      },
+      "address": {
+        "title": "Address"
+      },
+      "hours": {
+        "title": "Business Hours",
+        "weekdays": "Monday - Friday: 08:00 - 18:00",
+        "weekend": "Saturday - Sunday: 09:00 - 16:00"
+      }
+    },
+    "form": {
+      "title": "Send Message",
+      "name": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email address"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "Enter your phone number"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Write your message here..."
+      },
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "success": {
+        "title": "Message Sent!",
+        "message": "Thank you for contacting us. Our team will get back to you shortly."
+      }
+    }
+  },
+  "car": {
+    "list": {
+      "empty": "No Cars Available",
+      "empty_filtered": "Try changing your search filters or visit again later to see our latest collection.",
+      "empty_all": "All our cars have been sold. Please visit again later to see our latest collection.",
+      "contact": "Contact Us"
+    },
+    "filter": {
+      "search": "Search cars...",
+      "clear": "Clear search",
+      "show": "Show filters",
+      "hide": "Hide filters",
+      "reset": "Reset",
+      "brand": "Brand",
+      "brand_all": "All Brands",
+      "type": "Body Type",
+      "type_all": "All Types",
+      "status": "Status",
+      "status_all": "All Status",
+      "status_available": "Available",
+      "status_sold": "Sold Out",
+      "transmission": "Transmission",
+      "transmission_all": "All Transmissions",
+      "transmission_auto": "Automatic",
+      "transmission_manual": "Manual",
+      "price": "Price Range",
+      "price_all": "Any Price"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "add": "Add New Car",
+    "edit": "Edit",
+    "delete": "Delete",
+    "qrcode": "QR Code",
+    "brand": "Brand",
+    "model": "Model",
+    "price": "Price",
+    "transmission": "Transmission",
+    "status": "Status",
+    "actions": "Actions",
+    "no_cars": "No cars found",
+    "try_adjust": "Try adjusting your search or filters",
+    "add_first": "Add Your First Car"
+  },
+  "language": {
+    "title": "Language",
+    "id": "Indonesian",
+    "en": "English",
+    "switch": "Switch Language"
+  },
+  "carDetail": {
+    "backToListings": "Back to Listings",
+    "soldOut": "THIS CAR HAS BEEN SOLD",
+    "startingPrice": "Starting Price",
+    "specs": {
+      "year": "Year",
+      "capacity": "Capacity",
+      "luggage": "Luggage",
+      "transmission": "Transmission"
+    },
+    "aboutThisCar": "About This Car",
+    "noDescription": "No description available.",
+    "estDelivery": "Est. Delivery",
+    "totalPrice": "Total Price",
+    "whatsapp": "WhatsApp",
+    "whatsappMessage": "Hello, I'm interested in the {model} year {year}",
+    "relevantCars": {
+      "otherBodyType": "Other {bodyType} Cars",
+      "otherBrandBodyType": "Other {brand} {bodyType} Cars"
+    }
+  }
+}

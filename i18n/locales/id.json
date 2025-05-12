@@ -1,0 +1,203 @@
+{
+  "app": {
+    "name": "Montoran",
+    "tagline": "Temukan Mobil Bekas Impian Anda",
+    "description": "Jelajahi koleksi mobil bekas berkualitas kami. Setiap mobil dilengkapi dengan riwayat lengkap dan inspeksi menyeluruh."
+  },
+  "nav": {
+    "home": "Beranda",
+    "cars": "Mobil",
+    "about": "Tentang Kami",
+    "contact": "Hubungi Kami",
+    "dashboard": "Dashboard",
+    "login": "Masuk",
+    "logout": "Keluar"
+  },
+  "home": {
+    "hero": {
+      "title": "Temukan Mobil Bekas Impian Anda",
+      "subtitle": "Jelajahi koleksi mobil bekas berkualitas kami. Setiap mobil dilengkapi dengan riwayat lengkap dan inspeksi menyeluruh.",
+      "cta": "Lihat Mobil"
+    },
+    "available": {
+      "title": "Mobil Tersedia",
+      "subtitle": "Pilih dari koleksi kendaraan berkualitas untuk perjalanan Anda"
+    },
+    "trust": {
+      "quality": {
+        "title": "Terjamin Kualitas",
+        "desc": "Setiap mobil melalui inspeksi menyeluruh"
+      },
+      "price": {
+        "title": "Harga Terbaik",
+        "desc": "Harga kompetitif untuk semua kendaraan"
+      },
+      "finance": {
+        "title": "Pembiayaan Mudah",
+        "desc": "Opsi pembayaran yang fleksibel"
+      }
+    }
+  },
+  "about": {
+    "badge": "100% Mobil Bekas Berkualitas",
+    "hero": {
+      "title": "Mobil Bekas Berkualitas dengan Harga Terbaik",
+      "description": "Temukan mobil bekas impian Anda dari berbagai merek dan tipe. Dari MPV keluarga, SUV petualangan, hingga mobil sport performa tinggi. Semua mobil kami telah melalui pemeriksaan ketat untuk memastikan kualitas terbaik.",
+      "cta": "Lihat Semua Mobil"
+    },
+    "stats": {
+      "cars": "Mobil Tersedia",
+      "customers": "Pelanggan Puas",
+      "experience": "Tahun Pengalaman",
+      "support": "Dukungan Pelanggan"
+    },
+    "why": {
+      "title": "Kenapa Memilih Kami?",
+      "subtitle": "Kami menyediakan layanan terbaik dengan standar kualitas tertinggi untuk semua pelanggan kami",
+      "quality": {
+        "title": "Garansi Kualitas",
+        "description": "Semua mobil telah melalui pemeriksaan menyeluruh oleh tim ahli kami dengan 150+ titik inspeksi untuk memastikan kualitas terbaik.",
+        "point1": "Inspeksi mesin menyeluruh",
+        "point2": "Pengecekan riwayat kendaraan"
+      },
+      "transaction": {
+        "title": "Transaksi Aman",
+        "description": "Proses transaksi yang aman dan terpercaya dengan dukungan penuh dari tim profesional kami sepanjang proses.",
+        "point1": "Dokumen resmi dan lengkap",
+        "point2": "Dukungan kredit tersedia"
+      },
+      "price": {
+        "title": "Harga Terbaik",
+        "description": "Kami menawarkan harga yang kompetitif dengan nilai jual kembali yang baik untuk semua kendaraan di katalog kami.",
+        "point1": "Harga transparan tanpa biaya tersembunyi",
+        "point2": "Pilihan opsi pembayaran fleksibel"
+      }
+    },
+    "cta": {
+      "title": "Siap Menemukan Mobil Impian Anda?",
+      "description": "Hubungi kami sekarang untuk mendapatkan penawaran terbaik atau kunjungi showroom kami untuk melihat koleksi mobil secara langsung.",
+      "contact": "Hubungi Kami",
+      "explore": "Jelajahi Koleksi"
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Hubungi Kami",
+      "subtitle": "Kami siap membantu Anda menemukan mobil impian. Jangan ragu untuk menghubungi kami dengan pertanyaan atau permintaan Anda."
+    },
+    "info": {
+      "title": "Informasi Kontak",
+      "phone": {
+        "title": "Telepon"
+      },
+      "email": {
+        "title": "Email"
+      },
+      "address": {
+        "title": "Alamat"
+      },
+      "hours": {
+        "title": "Jam Operasional",
+        "weekdays": "Senin - Jumat: 08.00 - 18.00",
+        "weekend": "Sabtu - Minggu: 09.00 - 16.00"
+      }
+    },
+    "form": {
+      "title": "Kirim Pesan",
+      "name": {
+        "label": "Nama Lengkap",
+        "placeholder": "Masukkan nama lengkap Anda"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Masukkan alamat email Anda"
+      },
+      "phone": {
+        "label": "Nomor Telepon",
+        "placeholder": "Masukkan nomor telepon Anda"
+      },
+      "message": {
+        "label": "Pesan",
+        "placeholder": "Tulis pesan Anda di sini..."
+      },
+      "submit": "Kirim Pesan",
+      "submitting": "Mengirim...",
+      "success": {
+        "title": "Pesan Terkirim!",
+        "message": "Terima kasih telah menghubungi kami. Tim kami akan segera menghubungi Anda."
+      }
+    }
+  },
+  "car": {
+    "list": {
+      "empty": "Tidak Ada Mobil Tersedia",
+      "empty_filtered": "Coba ubah filter pencarian Anda atau kunjungi kembali nanti untuk melihat koleksi terbaru kami.",
+      "empty_all": "Semua mobil kami telah terjual. Silakan kunjungi kembali nanti untuk melihat koleksi terbaru kami.",
+      "contact": "Hubungi Kami"
+    },
+    "filter": {
+      "search": "Cari mobil...",
+      "clear": "Hapus pencarian",
+      "show": "Tampilkan filter",
+      "hide": "Sembunyikan filter",
+      "reset": "Reset",
+      "brand": "Merek",
+      "brand_all": "Semua Merek",
+      "type": "Tipe Body",
+      "type_all": "Semua Tipe",
+      "status": "Status",
+      "status_all": "Semua Status",
+      "status_available": "Tersedia",
+      "status_sold": "Terjual",
+      "transmission": "Transmisi",
+      "transmission_all": "Semua Transmisi",
+      "transmission_auto": "Otomatis",
+      "transmission_manual": "Manual",
+      "price": "Rentang Harga",
+      "price_all": "Semua Harga"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "add": "Tambah Mobil Baru",
+    "edit": "Edit",
+    "delete": "Hapus",
+    "qrcode": "QR Code",
+    "brand": "Merek",
+    "model": "Model",
+    "price": "Harga",
+    "transmission": "Transmisi",
+    "status": "Status",
+    "actions": "Aksi",
+    "no_cars": "Tidak ada mobil ditemukan",
+    "try_adjust": "Coba sesuaikan pencarian atau filter Anda",
+    "add_first": "Tambahkan Mobil Pertama Anda"
+  },
+  "language": {
+    "title": "Bahasa",
+    "id": "Indonesia",
+    "en": "Inggris",
+    "switch": "Ganti Bahasa"
+  },
+  "carDetail": {
+    "backToListings": "Kembali ke Daftar",
+    "soldOut": "MOBIL INI SUDAH TERJUAL",
+    "startingPrice": "Harga Mulai dari",
+    "specs": {
+      "year": "Tahun",
+      "capacity": "Kapasitas",
+      "luggage": "Bagasi",
+      "transmission": "Transmisi"
+    },
+    "aboutThisCar": "Tentang Mobil Ini",
+    "noDescription": "Tidak ada deskripsi tersedia.",
+    "estDelivery": "Perkiraan Pengiriman",
+    "totalPrice": "Total Harga",
+    "whatsapp": "WhatsApp",
+    "whatsappMessage": "Halo, saya tertarik dengan {model} tahun {year}",
+    "relevantCars": {
+      "otherBodyType": "Mobil {bodyType} Lainnya",
+      "otherBrandBodyType": "Mobil {bodyType} {brand} Lainnya"
+    }
+  }
+}
