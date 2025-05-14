@@ -5,25 +5,27 @@ import { useRouter } from "next/navigation";
 import AuthApi from "@/lib/auth-api";
 import { FaGoogle } from "react-icons/fa";
 import Image from "next/image";
-import { pb } from "@/lib/pocketbase";
+import { useAuth } from "../../../components/providers";
 
 const LoginPage = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { isAuthenticated, isLoading } = useAuth();
 
   useEffect(() => {
-    if (pb.authStore.isValid) {
+    if (!isLoading && isAuthenticated) {
       router.push("/dashboard");
     }
-  }, [router]);
+  }, [isAuthenticated, isLoading, router]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
-    setIsLoading(true);
+    setIsSubmitting(true);
 
     try {
       await AuthApi.login(email, password);
@@ -32,12 +34,12 @@ const LoginPage = () => {
     } catch {
       setError("Invalid email or password");
     } finally {
-      setIsLoading(false);
+      setIsSubmitting(false);
     }
   };
 
   const handleGoogleLogin = async () => {
-    setIsLoading(true);
+    setIsSubmitting(true);
 
     try {
       const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
@@ -54,7 +56,7 @@ const LoginPage = () => {
     } catch (error) {
       console.error("Google login error:", error);
       setError("Failed to login with Google");
-      setIsLoading(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -89,7 +91,7 @@ const LoginPage = () => {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              disabled={isLoading}
+              disabled={isSubmitting || isLoading}
             />
           </div>
           <div>
@@ -109,7 +111,7 @@ const LoginPage = () => {
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              disabled={isLoading}
+              disabled={isSubmitting || isLoading}
             />
           </div>
           {error && (
@@ -120,10 +122,10 @@ const LoginPage = () => {
           <div>
             <button
               type="submit"
-              disabled={isLoading}
+              disabled={isSubmitting || isLoading}
               className="w-full py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-slate-500 disabled:opacity-50 transition-colors"
             >
-              {isLoading ? (
+              {isSubmitting ? (
                 <span className="flex items-center justify-center">
                   <svg
                     className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
@@ -159,7 +161,7 @@ const LoginPage = () => {
             <button
               onClick={handleGoogleLogin}
               className="flex items-center justify-center bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors"
-              disabled={isLoading}
+              disabled={isSubmitting || isLoading}
             >
               <FaGoogle className="h-6 w-6" />
             </button>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import QRCode from "react-qr-code";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,36 +24,26 @@ export function CarQRCode({ car, isOpen, onClose }: CarQRCodeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [qrSize, setQrSize] = useState(0);
 
-  // Calculate QR code size based on container size
-  const updateQRSize = () => {
+  const updateQRSize = useCallback(() => {
     if (!containerRef.current) return;
-
-    // Get the container width
     const containerWidth = containerRef.current.clientWidth;
-
-    // Calculate the QR code size (accounting for padding)
-    // Subtract padding (24px on each side = 48px total)
     const newSize = Math.min(containerWidth - 48, 350);
 
-    // Update the size if it's different
     if (newSize !== qrSize && newSize > 0) {
       setQrSize(newSize);
     }
-  };
+  }, [qrSize]);
 
-  // Update size on mount and when dialog opens
   useEffect(() => {
     if (isOpen) {
-      // Small delay to ensure the dialog is fully rendered
       const timer = setTimeout(() => {
         updateQRSize();
       }, 50);
 
       return () => clearTimeout(timer);
     }
-  }, [isOpen]);
+  }, [isOpen, updateQRSize]);
 
-  // Update size on window resize
   useEffect(() => {
     const handleResize = () => {
       updateQRSize();
@@ -61,12 +51,10 @@ export function CarQRCode({ car, isOpen, onClose }: CarQRCodeProps) {
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [updateQRSize]);
 
-  // Generate the URL for the car detail page
   const carUrl = `${window.location.origin}/car/${car.id}`;
 
-  // Function to download QR code as SVG
   const downloadQRCode = () => {
     const svg = document.getElementById("car-qr-code");
     if (!svg) return;

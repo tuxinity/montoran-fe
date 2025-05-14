@@ -1,4 +1,5 @@
 import PocketBase from "pocketbase";
+import Cookies from "js-cookie";
 
 const pocketbaseUrl = process.env.NEXT_PUBLIC_POCKETBASE_URL;
 
@@ -8,13 +9,10 @@ if (!pocketbaseUrl) {
   );
 }
 
-// Create a PocketBase instance for server-side
 export const createPocketBase = () => new PocketBase(pocketbaseUrl);
 
-// Create a singleton instance for client-side only
 let clientPB: PocketBase | null = null;
 
-// This function ensures we don't create the PocketBase instance on the server
 export const getClientPB = () => {
   if (typeof window === "undefined") {
     return null;
@@ -23,16 +21,54 @@ export const getClientPB = () => {
   if (!clientPB) {
     clientPB = new PocketBase(pocketbaseUrl);
 
-    // Try to load auth from cookie if available
     try {
-      const authCookie = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("pb_auth="));
+      const token = Cookies.get("pb_auth") || Cookies.get("pocketbase_auth");
+
+      if (token) {
+        clientPB.authStore.save(token);
+        console.log("Auth token loaded from cookie");
+
+        Cookies.set("pb_auth", token, {
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "strict",
+          expires: 7,
+          path: "/",
+        });
+
+        Cookies.set("pocketbase_auth", token, {
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "strict",
+          expires: 7,
+          path: "/",
+        });
+
+        return clientPB;
+      }
+
+      const cookies = document.cookie.split("; ");
+      const authCookie =
+        cookies.find((row) => row.startsWith("pb_auth=")) ||
+        cookies.find((row) => row.startsWith("pocketbase_auth="));
 
       if (authCookie) {
         const token = authCookie.split("=")[1];
         if (token) {
           clientPB.authStore.save(token);
+          console.log("Auth token loaded from document.cookie");
+
+          Cookies.set("pb_auth", token, {
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+            expires: 7,
+            path: "/",
+          });
+
+          Cookies.set("pocketbase_auth", token, {
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+            expires: 7,
+            path: "/",
+          });
         }
       }
     } catch (e) {
@@ -43,7 +79,6 @@ export const getClientPB = () => {
   return clientPB;
 };
 
-// For server-side rendering, create a new instance each time
 export const pb =
   typeof window === "undefined"
     ? createPocketBase()

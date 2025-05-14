@@ -7,6 +7,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import { Globe } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -16,7 +17,6 @@ export function LanguageSwitcher() {
   const [currentLanguage, setCurrentLanguage] = useState<string>("id");
   const [isMounted, setIsMounted] = useState(false);
 
-  // Hanya jalankan kode browser setelah komponen di-mount
   useEffect(() => {
     setIsMounted(true);
     setCurrentLanguage(i18n.language || "id");
@@ -27,7 +27,6 @@ export function LanguageSwitcher() {
     setCurrentLanguage(lng);
   };
 
-  // Jika belum di-mount, tampilkan placeholder
   if (!isMounted) {
     return (
       <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full">
@@ -45,6 +44,7 @@ export function LanguageSwitcher() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
+        <DropdownMenuLabel>{t("language.switch")}</DropdownMenuLabel>
         <DropdownMenuItem
           onClick={() => changeLanguage("id")}
           className={currentLanguage === "id" ? "bg-accent" : ""}

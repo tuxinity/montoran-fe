@@ -28,16 +28,56 @@ const AuthApi: IAuthAPI = {
 
   login: async (
     email: string,
-    password: string
+    password: string,
   ): Promise<{ token: string; user: { id: string; email: string } }> => {
     try {
       const authData = await pb
         .collection("users")
         .authWithPassword(email, password);
-      Cookies.set("pb_auth", pb.authStore.token, {
+
+      const token = pb.authStore.token;
+
+      Cookies.set("pb_auth", token, {
         secure: process.env.NODE_ENV === "production",
         sameSite: "strict",
+        expires: 7,
+        path: "/",
       });
+
+      Cookies.set("pocketbase_auth", token, {
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        expires: 7,
+        path: "/",
+      });
+
+      if (typeof window !== "undefined") {
+        const expiryDate = new Date();
+        expiryDate.setDate(expiryDate.getDate() + 7);
+
+        document.cookie = `pb_auth=${token}; expires=${expiryDate.toUTCString()}; path=/; ${
+          process.env.NODE_ENV === "production" ? "secure;" : ""
+        } samesite=strict`;
+        document.cookie = `pocketbase_auth=${token}; expires=${expiryDate.toUTCString()}; path=/; ${
+          process.env.NODE_ENV === "production" ? "secure;" : ""
+        } samesite=strict`;
+
+        const userData = {
+          id: authData.record.id,
+          email: authData.record.email,
+          name: authData.record.name || authData.record.username || "User",
+          collectionId: "users",
+          collectionName: "users",
+        };
+
+        const localAuthData = {
+          token: token,
+          user: userData,
+          expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        };
+        localStorage.setItem("montoran_auth", JSON.stringify(localAuthData));
+      }
+
       return {
         token: authData.token,
         user: {
@@ -69,7 +109,7 @@ const AuthApi: IAuthAPI = {
       const providers = authData.providers || [];
 
       const googleAuthProvider = providers.find(
-        (provider) => provider.name === "google"
+        (provider) => provider.name === "google",
       );
 
       if (!googleAuthProvider) {
@@ -89,7 +129,7 @@ const AuthApi: IAuthAPI = {
     provider: string,
     code: string,
     state: string,
-    redirectUrl: string
+    redirectUrl: string,
   ) => {
     try {
       const authData = await pb
@@ -116,7 +156,29 @@ const AuthApi: IAuthAPI = {
 
   logout: () => {
     pb.authStore.clear();
+
     Cookies.remove("pb_auth");
+    Cookies.remove("pb_auth", { path: "/" });
+    Cookies.remove("pocketbase_auth");
+    Cookies.remove("pocketbase_auth", { path: "/" });
+
+    if (typeof window !== "undefined") {
+      const domain = window.location.hostname;
+
+      document.cookie = `pb_auth=; Max-Age=0; path=/; domain=${domain}`;
+      document.cookie = `pb_auth=; Max-Age=0; path=/;`;
+      document.cookie = `pocketbase_auth=; Max-Age=0; path=/; domain=${domain}`;
+      document.cookie = `pocketbase_auth=; Max-Age=0; path=/;`;
+
+      if (domain === "localhost") {
+        document.cookie = `pb_auth=; Max-Age=0; path=/;`;
+        document.cookie = `pocketbase_auth=; Max-Age=0; path=/;`;
+      }
+
+      localStorage.removeItem("montoran_auth");
+
+      console.log("Logged out and cleared all auth cookies and localStorage");
+    }
   },
 };
 

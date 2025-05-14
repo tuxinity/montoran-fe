@@ -173,7 +173,7 @@ export function CarForm({
 
     // Cleanup saat unmount
     return () => urls.forEach((url) => URL.revokeObjectURL(url));
-  }, [imageFiles]); // Hapus previewUrls dari dependensi
+  }, [imageFiles, previewUrls]);
 
   useEffect(() => {
     if (modalType === "edit") {

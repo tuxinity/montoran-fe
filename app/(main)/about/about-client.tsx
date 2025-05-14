@@ -3,9 +3,15 @@
 import { Search, Shield, Star, CheckCircle, Award, Tag } from "lucide-react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import { useState, useEffect } from "react";
 
 export function AboutClient() {
   const { t } = useTranslation();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <main className="overflow-hidden">
@@ -19,15 +25,17 @@ export function AboutClient() {
           <div className="max-w-3xl mx-auto text-center space-y-8">
             <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/15 text-primary text-sm font-medium border border-primary/20 shadow-sm">
               <Star className="w-4 h-4" fill="currentColor" />
-              <span>{t("about.badge")}</span>
+              <span>{!mounted ? "Terpercaya" : t("about.badge")}</span>
             </div>
 
             <h1 className="text-4xl py-2.5 md:text-5xl lg:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-600 to-primary/70 drop-shadow-sm">
-              {t("about.hero.title")}
+              {!mounted ? "Tentang Montoran" : t("about.hero.title")}
             </h1>
 
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              {t("about.hero.description")}
+              {!mounted
+                ? "Penyedia mobil bekas berkualitas terpercaya di Indonesia"
+                : t("about.hero.description")}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -36,7 +44,7 @@ export function AboutClient() {
                 className="group inline-flex items-center justify-center gap-2 rounded-md bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground shadow-lg transition-all hover:bg-primary/90 hover:shadow-primary/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <Search className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" />
-                <span>{t("about.hero.cta")}</span>
+                <span>{!mounted ? "Lihat Mobil" : t("about.hero.cta")}</span>
               </Link>
             </div>
           </div>
@@ -69,20 +77,24 @@ export function AboutClient() {
               <p className="text-3xl md:text-4xl font-bold text-primary-foreground mb-2">
                 500+
               </p>
-              <p className="text-primary-foreground text-sm">{t("about.stats.cars")}</p>
+              <p className="text-primary-foreground text-sm">
+                {!mounted ? "Mobil Terjual" : t("about.stats.cars")}
+              </p>
             </div>
             <div className="p-4">
               <p className="text-3xl md:text-4xl font-bold text-primary-foreground mb-2">
                 1250+
               </p>
-              <p className="text-primary-foreground text-sm">{t("about.stats.customers")}</p>
+              <p className="text-primary-foreground text-sm">
+                {!mounted ? "Pelanggan Puas" : t("about.stats.customers")}
+              </p>
             </div>
             <div className="p-4">
               <p className="text-3xl md:text-4xl font-bold text-primary-foreground mb-2">
                 15+
               </p>
               <p className="text-primary-foreground text-sm">
-                {t("about.stats.experience")}
+                {!mounted ? "Tahun Pengalaman" : t("about.stats.experience")}
               </p>
             </div>
             <div className="p-4">
@@ -90,7 +102,7 @@ export function AboutClient() {
                 24/7
               </p>
               <p className="text-primary-foreground text-sm">
-                {t("about.stats.support")}
+                {!mounted ? "Dukungan Pelanggan" : t("about.stats.support")}
               </p>
             </div>
           </div>
@@ -101,10 +113,12 @@ export function AboutClient() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tight mb-4">
-              {t("about.why.title")}
+              {!mounted ? "Mengapa Memilih Kami" : t("about.why.title")}
             </h2>
             <p className="text-muted-foreground">
-              {t("about.why.subtitle")}
+              {!mounted
+                ? "Kami menawarkan layanan terbaik dengan standar kualitas tertinggi"
+                : t("about.why.subtitle")}
             </p>
           </div>
 
@@ -114,20 +128,30 @@ export function AboutClient() {
                 <Shield className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-semibold mb-4 pt-2">
-                {t("about.why.quality.title")}
+                {!mounted ? "Kualitas Terjamin" : t("about.why.quality.title")}
               </h3>
               <p className="text-muted-foreground">
-                {t("about.why.quality.description")}
+                {!mounted
+                  ? "Setiap mobil kami melalui inspeksi ketat untuk memastikan kualitas terbaik"
+                  : t("about.why.quality.description")}
               </p>
               <div className="mt-6 pt-4 border-t border-muted">
                 <ul className="space-y-2">
                   <li className="flex items-center text-sm">
                     <CheckCircle className="w-4 h-4 text-primary mr-2" />
-                    <span>{t("about.why.quality.point1")}</span>
+                    <span>
+                      {!mounted
+                        ? "Inspeksi 100+ titik"
+                        : t("about.why.quality.point1")}
+                    </span>
                   </li>
                   <li className="flex items-center text-sm">
                     <CheckCircle className="w-4 h-4 text-primary mr-2" />
-                    <span>{t("about.why.quality.point2")}</span>
+                    <span>
+                      {!mounted
+                        ? "Garansi mesin dan transmisi"
+                        : t("about.why.quality.point2")}
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -138,20 +162,32 @@ export function AboutClient() {
                 <Award className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-semibold mb-4 pt-2">
-                {t("about.why.transaction.title")}
+                {!mounted
+                  ? "Transaksi Transparan"
+                  : t("about.why.transaction.title")}
               </h3>
               <p className="text-muted-foreground">
-                {t("about.why.transaction.description")}
+                {!mounted
+                  ? "Kami menjamin proses transaksi yang jujur dan transparan tanpa biaya tersembunyi"
+                  : t("about.why.transaction.description")}
               </p>
               <div className="mt-6 pt-4 border-t border-muted">
                 <ul className="space-y-2">
                   <li className="flex items-center text-sm">
                     <CheckCircle className="w-4 h-4 text-primary mr-2" />
-                    <span>{t("about.why.transaction.point1")}</span>
+                    <span>
+                      {!mounted
+                        ? "Tanpa biaya tersembunyi"
+                        : t("about.why.transaction.point1")}
+                    </span>
                   </li>
                   <li className="flex items-center text-sm">
                     <CheckCircle className="w-4 h-4 text-primary mr-2" />
-                    <span>{t("about.why.transaction.point2")}</span>
+                    <span>
+                      {!mounted
+                        ? "Dokumen lengkap dan legal"
+                        : t("about.why.transaction.point2")}
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -161,19 +197,31 @@ export function AboutClient() {
               <div className="absolute top-0 right-0 -mt-5 -mr-5 bg-primary text-primary-foreground rounded-full p-3 shadow-lg group-hover:scale-110 transition-transform">
                 <Tag className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-semibold mb-4 pt-2">{t("about.why.price.title")}</h3>
+              <h3 className="text-xl font-semibold mb-4 pt-2">
+                {!mounted ? "Harga Kompetitif" : t("about.why.price.title")}
+              </h3>
               <p className="text-muted-foreground">
-                {t("about.why.price.description")}
+                {!mounted
+                  ? "Kami menawarkan harga terbaik di pasaran dengan nilai yang sepadan"
+                  : t("about.why.price.description")}
               </p>
               <div className="mt-6 pt-4 border-t border-muted">
                 <ul className="space-y-2">
                   <li className="flex items-center text-sm">
                     <CheckCircle className="w-4 h-4 text-primary mr-2" />
-                    <span>{t("about.why.price.point1")}</span>
+                    <span>
+                      {!mounted
+                        ? "Harga sesuai nilai pasar"
+                        : t("about.why.price.point1")}
+                    </span>
                   </li>
                   <li className="flex items-center text-sm">
                     <CheckCircle className="w-4 h-4 text-primary mr-2" />
-                    <span>{t("about.why.price.point2")}</span>
+                    <span>
+                      {!mounted
+                        ? "Opsi pembiayaan fleksibel"
+                        : t("about.why.price.point2")}
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -186,23 +234,27 @@ export function AboutClient() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">
-              {t("about.cta.title")}
+              {!mounted
+                ? "Siap Menemukan Mobil Impian Anda?"
+                : t("about.cta.title")}
             </h2>
             <p className="text-primary-foreground/80 text-lg mb-8 max-w-2xl mx-auto">
-              {t("about.cta.description")}
+              {!mounted
+                ? "Hubungi kami sekarang untuk konsultasi gratis atau jelajahi koleksi mobil kami"
+                : t("about.cta.description")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
                 className="inline-flex items-center justify-center rounded-md bg-white text-primary px-6 py-3 text-sm font-medium shadow hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
-                {t("about.cta.contact")}
+                {!mounted ? "Hubungi Kami" : t("about.cta.contact")}
               </Link>
               <Link
                 href="/car"
                 className="inline-flex items-center justify-center rounded-md bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground px-6 py-3 text-sm font-medium hover:bg-primary-foreground/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground/20"
               >
-                {t("about.cta.explore")}
+                {!mounted ? "Lihat Mobil" : t("about.cta.explore")}
               </Link>
             </div>
           </div>

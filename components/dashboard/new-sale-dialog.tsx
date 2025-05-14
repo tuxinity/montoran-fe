@@ -34,6 +34,17 @@ interface NewSaleDialogProps {
   preselectedCarId?: string;
 }
 
+const formatPrice = (value: string) => {
+  const numericValue = value.replace(/\D/g, "");
+  const formattedValue = numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  return formattedValue;
+};
+
+const parsePrice = (value: string) => {
+  return parseFloat(value.replace(/,/g, ""));
+};
+
 export const NewSaleDialog = ({
   open,
   onClose,
@@ -59,7 +70,6 @@ export const NewSaleDialog = ({
     phone: "",
   });
 
-  // Use React Query hooks
   const { data: cars = [], isLoading: carsLoading } = useAvailableCars();
 
   const { data: customers = [], isLoading: customersLoading } = useCustomers();
@@ -86,6 +96,17 @@ export const NewSaleDialog = ({
     });
   }, []);
 
+  const handleCarSelect = useCallback(
+    (carId: string) => {
+      setCarId(carId);
+      const selectedCar = cars.find((car) => car.id === carId);
+      if (selectedCar) {
+        setPrice(formatPrice(selectedCar.sell_price.toString()));
+      }
+    },
+    [cars],
+  );
+
   useEffect(() => {
     if (open) {
       resetForm();
@@ -94,17 +115,9 @@ export const NewSaleDialog = ({
 
   useEffect(() => {
     if (preselectedCarId) {
-      setCarId(preselectedCarId);
+      handleCarSelect(preselectedCarId);
     }
-  }, [preselectedCarId]);
-
-  const handleCarSelect = (carId: string) => {
-    setCarId(carId);
-    const selectedCar = cars.find((car) => car.id === carId);
-    if (selectedCar) {
-      setPrice(selectedCar.sell_price.toString());
-    }
-  };
+  }, [preselectedCarId, handleCarSelect]);
 
   const handleCustomerSelect = (value: string) => {
     if (value === "add-new") {
@@ -114,7 +127,7 @@ export const NewSaleDialog = ({
     } else {
       setCustomerId(value);
       const selectedCustomer = customers.find(
-        (customer) => customer.id === value
+        (customer) => customer.id === value,
       );
       if (selectedCustomer) {
         setCustomerName(selectedCustomer.name);
@@ -123,8 +136,6 @@ export const NewSaleDialog = ({
   };
 
   const validatePhone = (phone: string) => {
-    // Check if it's a valid Indonesian phone number
-    // Format: 0 followed by 8-13 digits
     const isValid = /^0[0-9]{8,13}$/.test(phone);
 
     if (!isValid) {
@@ -134,7 +145,6 @@ export const NewSaleDialog = ({
   };
 
   const handleAddCustomer = async () => {
-    // Validate customer data
     const nameError = !newCustomer.name ? "Name is required" : "";
     const phoneError = !newCustomer.phone
       ? "Phone is required"
@@ -150,10 +160,8 @@ export const NewSaleDialog = ({
     }
 
     try {
-      // Use the mutation to create a customer
       const customer = await createCustomerMutation.mutateAsync(newCustomer);
 
-      // Update local state
       setCustomerId(customer.id);
       setCustomerName(customer.name);
       setIsAddingCustomer(false);
@@ -185,20 +193,6 @@ export const NewSaleDialog = ({
         });
       }
     }
-  };
-
-  const formatPrice = (value: string) => {
-    // Remove all non-digit characters
-    const numericValue = value.replace(/\D/g, "");
-
-    // Format with commas
-    const formattedValue = numericValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-    return formattedValue;
-  };
-
-  const parsePrice = (value: string) => {
-    return parseFloat(value.replace(/,/g, ""));
   };
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -480,7 +474,7 @@ export const NewSaleDialog = ({
             />
           </div>
         </div>
-        <DialogFooter>
+        <DialogFooter className="gap-2">
           <Button variant="outline" onClick={onClose}>
             Cancel
           </Button>
